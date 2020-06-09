@@ -10,6 +10,7 @@ c * Hencky_strain_E
       subroutine pre_ln( defoGrad_vec, eigenvalues, Ma,
      &                   ea, da, fa, Hencky_strain_E )
         use Tensor
+        use TensorXLSDYNA
         implicit none
 c Declarations        
         real, dimension(9), intent(in) :: defoGrad_vec
