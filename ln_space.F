@@ -284,8 +284,14 @@ c The variable 'tmp' seems to be necessary, else we cannot assign the value of t
      &                        theta%ab(a,b) * tensor_operator_G
               endif
 	    enddo
-       enddo
+      enddo
 c        
+      if ( .false.) then
+          write(*,*) "projection_tensor_P=",projection_tensor_P
+          write(*,*) "theta=",theta
+          write(*,*) "xi=",xi
+          write(*,*) "eta=",eta
+      endif
         return
       end
 
