@@ -135,8 +135,8 @@ c * Ma
 c output:
 c * projection_tensor_P   
 c * theta, xi, eta
-      subroutine post_ln_projTensor( eigenvalues, Ma,
-     &            ea, da, fa, projection_tensor_P, theta, xi, eta )
+      subroutine post_ln_projTensor( eigenvalues, Ma, ea, da, fa, 
+     &           projection_tensor_P, theta, xi, eta, failedIt )
         use Tensor
         implicit none
 c Declarations        
@@ -147,7 +147,8 @@ c Declarations
         type(Tensor2) :: theta, xi
         double precision eta
         double precision comp_tolerance
-        integer a,b,c,i,j,k,l        
+        integer a,b,c,i,j,k,l     
+        logical failedIt
 c USER-Parameters
         comp_tolerance = 1e-8
 c Set up the coefficients theta, xi and eta
@@ -264,7 +265,7 @@ c Set up the coefficients theta, xi and eta
 	 else
           write(*,*) "Found a non distinguisable eigenvalue triple"
           write(*,*) "eigenvalues=", eigenvalues
-          pause
+          failedIt = .true.
        endif
 c
 c Set the fourth order projection tensor to transform the stress tensor
