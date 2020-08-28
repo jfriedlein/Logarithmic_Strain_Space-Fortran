@@ -11,6 +11,7 @@ c * Hencky_strain_E
      &                   ea, da, fa, Hencky_strain_E )
         use Tensor
         use TensorXLSDYNA
+c
         implicit none
 c Declarations        
         real, dimension(9), intent(in) :: defoGrad_vec
@@ -41,7 +42,7 @@ c and e.g. apply the TTB dyadic product
           enddo
 c Sort the eigenvalues and eigenvectors in descendig order
 c @todo-optimize: Find a better sort algo that also swapes the eigenvectors
-c Negative EWs are not allowed, are they?. So we don't care about them
+c Negative EWs are not allowed, are they?. So we don't care about them.
           if ( eigenvalues(1) > eigenvalues(2)
      &   .and. eigenvalues(2) > eigenvalues(3) ) then
               ! That's what we want
@@ -102,18 +103,17 @@ c Negative EWs are not allowed, are they?. So we don't care about them
       endif
 
 c @todo-extend Now we would have to do some things for 2D. So later on add these.
-c @todo-optimize Find a better way to init the tensor (maybe automatially on creation)
-        forall(i=1:3,j=1:3) Hencky_strain_E%ab(i,j)=0.
+c @todo-optimize Find a better way to init the tensor, maybe automatially on creation
+        Hencky_strain_E%ab=0.
 c
         do a=1,3
           ea(a) = 0.5 * log(eigenvalues(a))
           da(a) = 1. / eigenvalues(a)
           fa(a) = -2. * eigenvalues(a)**(-2)
-c @todo Check whether the eigenvalues need to be sorted
           Ma(a) = (eigenvectors(a)) .dya. (eigenvectors(a))
           Hencky_strain_E = Hencky_strain_E + ea(a) * Ma(a)
       enddo
-c        
+c @test {
 !      if ( eps(2)>1e-12 ) then
 !          write(*,*) "F1=", F1
 !          write(*,*) "eigenvectors=", eigenvectors
@@ -121,7 +121,7 @@ c
 !          write(*,*) "Hencky_strain=", Hencky_strain_E
 !          pause
 !      endif
-c
+c }
         return
       end
       
