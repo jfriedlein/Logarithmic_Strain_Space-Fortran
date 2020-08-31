@@ -33,6 +33,7 @@ The transformation consists of three steps. First, we transform the deformation 
 To show how easy the usage is and to give you the boilerplate code snippets, here an example from an LS-DYNA UMAT (For details on LS-Dyna umats see [here](https://github.com/jfriedlein/usrmat_LS-Dyna_Fortran)).
 
 We implement our user-defined material model in the file "dyn21umats.F", were we start with the includes. This ln-space is based on tensors, so we use the [ttb tensor toolbox for Fortran](https://github.com/adtzlr/ttb).
+
 [dyn21umats.F]
 ```fortran
 c Tensor Toolbox for Fortran by Andreas Dutzler
@@ -49,7 +50,6 @@ And of course we have to include the ln-space itself, as follows.
 ```fortran
 c Logarthmic strain space
       include "../Logarithmic_Strain_Space-Fortran/ln_space.F"
-c
 ```
 
 In the desired umat (here umat44), we follow the three steps (preprocessing, small strain model, postprocessing).
