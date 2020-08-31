@@ -1,4 +1,4 @@
-# Logarithmic-Strain-Space_Fortran
+# Logarithmic_Strain_Space-Fortran
 Fortran code for the transformation into the logarithmic strain space
 
 ## ToDo:
