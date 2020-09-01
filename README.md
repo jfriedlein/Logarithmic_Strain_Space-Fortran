@@ -1,13 +1,13 @@
 # Logarithmic_Strain_Space-Fortran
-Fortran code for the transformation into the logarithmic strain space
+Fortran code for the transformation into the logarithmic strain space (ln-space)
 
 (also available for C++ library deal.II [here](https://github.com/jfriedlein/Logarithmic_Strain_Space-dealii))
 
 ## Requirements
-* eigenproblem solver by Joachim Kopp from https://www.mpi-hd.mpg.de/personalhomes/globes/3x3/ ("dsyevj3-F-1.0")
+* eigenproblem solver by Joachim Kopp from https://www.mpi-hd.mpg.de/personalhomes/globes/3x3/ ("dsyevj3-F-1.0"), included inside the `ln_space.F`. Be aware of the correct paths, the current implementation requires the folder "dsyevj3-F-1.0" to be on the same level as the "Logarithmic_Strain_Space-Fortran" folder (not inside the folder).
 
 ## Note
-This code is not optimised. We are probably able to speed things up in many places (recompute/save data, Voigt notation, ...).
+This code is not optimised. We are probably able to speed things up in many places (recompute/save data, Voigt notation, ...). The ln-space can also be set up such that it directly outputs the spatial stress and tangent. Unfortunately, the current implementation does not enable a simple switch between material and spatial output, because it is based on an older ln-space paper. So, it is simpler to do a separate push-forward in the end.
 
 ## The goal/When to use this code
 The logarithmic strain space (herein often abbreviated as ln-space) is a very simple (in terms of the application) way to apply small strain material models to finite strains. So, in case you have a small strain model that you would like to use for applications exposed to large deformations/finite strains, the ln-space it probably the easiest way to achieve this.

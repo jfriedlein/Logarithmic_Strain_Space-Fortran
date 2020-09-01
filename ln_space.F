@@ -1,3 +1,8 @@
+c
+c Subroutine for the computation of the eigenproblem by Joachim Kopp
+c [https://www.mpi-hd.mpg.de/personalhomes/globes/3x3/index.html]
+      include '../dsyevj3-F-1.0/dsyevj3.f'
+c      
 c ###############################################################################
 c ln-space - preprocessing 3D
 c inputs:
@@ -8,7 +13,7 @@ c * eigenbasis
 c * ea,da,fa
 c * Hencky_strain_E 
       subroutine pre_ln( defoGrad_vec, eigenvalues, Ma,
-     &                   ea, da, fa, Hencky_strain_E )
+     &                   ea, da, fa, Hencky_strain_E, failedIt )
         use Tensor
         use TensorXLSDYNA
 c
@@ -23,6 +28,7 @@ c Declarations
         type(Tensor1), dimension(3) :: eigenvectors
         type(Tensor1) :: tmp_eigenvector
         integer a,b,c,i,j,k,l
+        logical failedIt
 c Extract the deformation gradient
         F1 = defoGrad( defoGrad_vec )
 c @todo Check why printing the unsymmetric tensor F1 shows the transposed?
@@ -33,7 +39,7 @@ c The latter is always 3x3, hence we can use an optimized computation.
 c @note Be aware that the function destroyes the inputted matrix hence
 c we give a dummy variable, that could be deleted afterwards
         dummy_C = right_CauchyGreen_C
-        call DSYEVJ3(dummy_C, eigenvectors_vec, eigenvalues)
+        call DSYEVJ3(dummy_C, eigenvectors_vec, eigenvalues, failedIt)
 c Store the eigenvectors as first order tensor to be able to handle them easier
 c and e.g. apply the TTB dyadic product
         do a=1,3
