@@ -5,6 +5,7 @@ Fortran code for the transformation into the logarithmic strain space (ln-space)
 
 ## Requirements
 * eigenproblem solver by Joachim Kopp from https://www.mpi-hd.mpg.de/personalhomes/globes/3x3/ ("dsyevj3-F-1.0"), included inside the `ln_space.F`. Be aware of the correct paths, the current implementation requires the folder "dsyevj3-F-1.0" to be on the same level as the "Logarithmic_Strain_Space-Fortran" folder (not inside the folder).
+* The here published version of the ln-space is implemented in tensor notation using the tensor toolbox ttb that is also required and available [here](https://github.com/adtzlr/ttb).
 
 ## Note
 This code is not optimised. We are probably able to speed things up in many places (recompute/save data, Voigt notation, ...). The ln-space can also be set up such that it directly outputs the spatial stress and tangent. Unfortunately, the current implementation does not enable a simple switch between material and spatial output, because it is based on an older ln-space paper. So, it is simpler to do a separate push-forward in the end.
