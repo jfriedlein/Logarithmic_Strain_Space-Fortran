@@ -6,7 +6,9 @@ Fortran code for the transformation into the logarithmic strain space (ln-space)
 ## Requirements
 * eigenproblem solver by Joachim Kopp from https://www.mpi-hd.mpg.de/personalhomes/globes/3x3/ ("dsyevj3-F-1.0"), included inside the `ln_space.F`. Be aware of the correct paths, the current implementation requires the folder "dsyevj3-F-1.0" to be on the same level as the "Logarithmic_Strain_Space-Fortran" folder (not inside the folder).
 * The here published version of the ln-space is implemented in tensor notation using the tensor toolbox ttb that is also required and available [here](https://github.com/adtzlr/ttb).
-* Moreover, for convenience the ttb extension for LS-Dyna (ttbXLSDYNA) needs to be used, which, at the moment, is only avaiable [here](https://github.com/jfriedlein/ttb/tree/extension_test_XLSDYNA/ttbXLSDYNA). However, this is only being used to transform the deformation gradient from the LS-Dyna list storage into a second order tensor, which is trivial if you know the storage convention (see LS-Dyna user manual, appendix A).
+* Moreover, for convenience the ttb extension for LS-Dyna (ttbXLSDYNA) needs to be used, which, at the moment, is only available [here](https://github.com/jfriedlein/ttb/tree/extension_test_XLSDYNA/ttbXLSDYNA). However, this is only being used to transform the deformation gradient from the LS-Dyna list storage into a second order tensor, which is trivial if you know the storage convention (see LS-Dyna user manual, appendix A).
+* The example below uses some more modules, namely the [history hsv-manager](https://github.com/jfriedlein/history_hsv-manager_LS-Dyna), [material parameter cm-manager](https://github.com/jfriedlein/material-parameter_manager_LS-Dyna) and the ttbXkinematics extension for the stress and tangent push forwards. The former modules simplify the access of history variables and material parameters.
+
 
 ## Note
 This code is not optimised. We are probably able to speed things up in many places (recompute/save data, Voigt notation, ...). The ln-space can also be set up such that it directly outputs the spatial stress and tangent. Unfortunately, the current implementation does not enable a simple switch between material and spatial output, because it is based on an older ln-space paper. So, it is simpler to do a separate push-forward in the end.
@@ -55,7 +57,7 @@ c Logarthmic strain space
 ```
 
 In the desired umat (here umat44), we follow the three steps (preprocessing, small strain model, postprocessing).
-Everything until the next textblock is boilerplate code, so can be reused without changes.
+Everything until the next text block is boilerplate code, so can be reused without changes.
 
 ```fortran
       subroutine umat44 (cm,eps,sig,epsp,hsv,dt1,capa,etype,tt,
@@ -158,7 +160,7 @@ c
 c This ends our actual small strain material model, but before we can take
 c the resulting stress tensor and go home, we have to transform it from the 
 c logarithmic strain space (ln-space) back into the real world (post). Which is
-c admittingly a complicated and expensive task.
+c admittedly a complicated and expensive task.
 ```
 
 And boilerplate code again, where we postprocess the stress and tangent and push
@@ -216,6 +218,7 @@ c
 
 ## ToDo:
 * test the use of include dsyevj in ln_space.F
+* remove the need for all these modules, to make the code and the example standalone
 
 Add a note (where to save it) and the download link
 * "always existing lines of code" (maybe colored blocks)
