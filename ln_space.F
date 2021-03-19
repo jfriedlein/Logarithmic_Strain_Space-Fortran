@@ -1,7 +1,7 @@
 c
 c Subroutine for the computation of the eigenproblem by Joachim Kopp
 c [https://www.mpi-hd.mpg.de/personalhomes/globes/3x3/index.html]
-      include '../dsyevj3-F-1.0/dsyevj3.f'
+      include '..\dsyevj3-F-1.0\dsyevj3.f'
 c      
 c ###############################################################################
 c ln-space - preprocessing 3D
@@ -129,7 +129,7 @@ c @test {
 !      endif
 c }
         return
-      end
+      end subroutine
       
       
 c ###############################################################################
@@ -300,7 +300,7 @@ c
           write(*,*) "eta=",eta
       endif
         return
-      end
+      end subroutine
 
       
    
@@ -383,7 +383,7 @@ c
      &                + T_DC_L
 c       
         return
-              end
+              end subroutine
               
 c ###############################################################################
       subroutine ten_op_F_right( Mabc, a, b, c, stress_T, ten_x_xxx )
@@ -403,7 +403,7 @@ c
      &       Mabc(a)%ab(i,k)*MbTMc%ab(j,l)+Mabc(a)%ab(i,l)*MbTMc%ab(j,k)
         
       return
-      end
+      end subroutine
         
 c ###############################################################################
       subroutine ten_op_F_left( Mabc, a, b, c, stress_T, ten_x_xxx )
@@ -423,7 +423,7 @@ c
      &       MaTMb%ab(j,l)*Mabc(c)%ab(i,k)+MaTMb%ab(j,k)*Mabc(c)%ab(i,l)
 c        
       return
-      end
+      end subroutine
               
 c ###############################################################################
 c ln-space - postprocessing
@@ -461,5 +461,5 @@ c Transform the tangent
      &   projection_tensor_P, theta, xi, eta, fa, tangent_E )     
 c
       return
-      end
+      end subroutine
               
