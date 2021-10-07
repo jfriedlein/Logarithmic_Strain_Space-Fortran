@@ -45,7 +45,7 @@ c and e.g. apply the TTB dyadic product
         do a=1,3
           ! Be aware that the eigenvectors must be retrieved correctly
           eigenvectors(a) = eigenvectors_vec(1:3,a)
-          enddo
+        enddo
 c Sort the eigenvalues and eigenvectors in descendig order
 c @todo-optimize: Find a better sort algo that also swapes the eigenvectors
 c Negative EWs are not allowed, are they?. So we don't care about them.
