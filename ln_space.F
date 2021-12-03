@@ -19,11 +19,11 @@ c * Hencky_strain_E
 c
         implicit none
 c Declarations        
-        real, dimension(9), intent(in) :: defoGrad_vec
+        real*8, dimension(9), intent(in) :: defoGrad_vec
         type(Tensor2) :: Hencky_strain_E, F1
         type(Tensor2) :: right_CauchyGreen_C, dummy_C
-        double precision eigenvectors_vec(3,3), eigenvalues(3), tmp_EW
-        double precision ea(3), da(3), fa(3)
+        real*8 eigenvectors_vec(3,3), eigenvalues(3), tmp_EW
+        real*8 ea(3), da(3), fa(3)
         type(Tensor2), dimension(3) :: Ma
         type(Tensor1), dimension(3) :: eigenvectors
         type(Tensor1) :: tmp_eigenvector
@@ -118,7 +118,7 @@ c
           fa(a) = -2. * eigenvalues(a)**(-2)
           Ma(a) = (eigenvectors(a)) .dya. (eigenvectors(a))
           Hencky_strain_E = Hencky_strain_E + ea(a) * Ma(a)
-      enddo
+        enddo
 c @test {
 !      if ( eps(2)>1e-12 ) then
 !          write(*,*) "F1=", F1
