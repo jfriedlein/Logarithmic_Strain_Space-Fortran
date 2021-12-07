@@ -363,7 +363,7 @@ c
      &					 * ( ten_r_abb + ten_l_abb + ten_r_bba
      &                         + ten_l_bba + ten_r_bab + ten_l_bab )
 c                  
-                  T_DC_L = T_DC_L + tmp
+                T_DC_L = T_DC_L + tmp
 				do c=1,3
                       Ma_c = Ma(c)
 					if ( (c /= a) .AND. (c /= b) ) then
@@ -420,7 +420,8 @@ c
 
         forall(i=1:3,j=1:3,k=1:3,l=1:3)
      &	 ten_x_xxx%abcd(i,j,k,l) = 
-     &       MaTMb%ab(j,l)*Mabc(c)%ab(i,k)+MaTMb%ab(j,k)*Mabc(c)%ab(i,l)
+!     &       MaTMb%ab(j,l)*Mabc(c)%ab(i,k)+MaTMb%ab(j,k)*Mabc(c)%ab(i,l) ! @BUG: WRONG!
+     &       MaTMb%ab(i,k)*Mabc(c)%ab(j,l)+MaTMb%ab(i,l)*Mabc(c)%ab(j,k)
 c        
       return
       end subroutine
