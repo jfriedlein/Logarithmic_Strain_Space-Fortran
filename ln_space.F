@@ -1,7 +1,7 @@
 c
 c Subroutine for the computation of the eigenproblem by Joachim Kopp
 c [https://www.mpi-hd.mpg.de/personalhomes/globes/3x3/index.html]
-      include '../dsyevj3-F-1.0/dsyevj3.f'
+      include 'dsyevj3.f'
 c      
 c ###############################################################################
 c ln-space - preprocessing 3D

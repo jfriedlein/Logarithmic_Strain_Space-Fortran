@@ -4,7 +4,6 @@ Fortran code for the transformation into the logarithmic strain space (ln-space)
 (also available for C++ library deal.II [here](https://github.com/jfriedlein/Logarithmic_Strain_Space-dealii))
 
 ## Requirements
-* eigenproblem solver by Joachim Kopp from https://www.mpi-hd.mpg.de/personalhomes/globes/3x3/ ("dsyevj3-F-1.0"), included inside the `ln_space.F`. Be aware of the correct paths, the current implementation requires the folder "dsyevj3-F-1.0" to be on the same level as the "Logarithmic_Strain_Space-Fortran" folder (not inside the folder).
 * The here published version of the ln-space is implemented in tensor notation using the tensor toolbox ttb that is also required and available [here](https://github.com/adtzlr/ttb).
 * Moreover, for convenience the ttb extension for LS-Dyna (ttbXLSDYNA) needs to be used, which, at the moment, is only available [here](https://github.com/jfriedlein/ttb/tree/extension_test_XLSDYNA/ttbXLSDYNA). However, this is only being used to transform the deformation gradient from the LS-Dyna list storage into a second order tensor, which is trivial if you know the storage convention (see LS-Dyna user manual, appendix A).
 * The example below uses some more modules, namely the [history hsv-manager](https://github.com/jfriedlein/history_hsv-manager_LS-Dyna), [material parameter cm-manager](https://github.com/jfriedlein/material-parameter_manager_LS-Dyna) and the ttbXkinematics extension for the stress and tangent push forwards. The former modules simplify the access of history variables and material parameters.
