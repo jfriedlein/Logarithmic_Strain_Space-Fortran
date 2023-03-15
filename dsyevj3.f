@@ -1,3 +1,5 @@
+!DEC$ IF .NOT. DEFINED (DSYEVJ3_F)
+!DEC$ DEFINE DSYEVJ3_F
 * ----------------------------------------------------------------------------
 * Numerical diagonalization of 3x3 matrcies
 * Copyright (C) 2006  Joachim Kopp
@@ -162,4 +164,4 @@ c
             
       END SUBROUTINE
 * End of subroutine DSYEVJ3
-
+!DEC$ ENDIF
