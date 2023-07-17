@@ -1,5 +1,5 @@
-!DEC$ IF .NOT. DEFINED (DSYEVJ3_F)
-!DEC$ DEFINE DSYEVJ3_F
+!DEC$ IF .NOT. DEFINED (dsyevj3_F)
+!DEC$ DEFINE dsyevj3_F
 * ----------------------------------------------------------------------------
 * Numerical diagonalization of 3x3 matrcies
 * Copyright (C) 2006  Joachim Kopp
@@ -22,7 +22,7 @@
 
 
 * ----------------------------------------------------------------------------
-      SUBROUTINE DSYEVJ3(A_in, Q, W, failedIt)
+      SUBROUTINE dsyevj3(A_in, Q, W, failedIt)
 * ----------------------------------------------------------------------------
 * Calculates the eigenvalues and normalized eigenvectors of a symmetric 3x3
 * matrix A using the Jacobi algorithm.
@@ -163,5 +163,5 @@ c
       failedIt = .true.
             
       END SUBROUTINE
-* End of subroutine DSYEVJ3
+* End of subroutine dsyevj3
 !DEC$ ENDIF
